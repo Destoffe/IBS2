@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="toaTitle"
+            type="String" />
+
+        <variable
+            name="painTitle"
+            type="String" />
+
+        <variable
+            name="oldRegisterExists"
+            type="boolean" />
+        <variable
+            name="hideNewDay"
+            type="boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <me.ibrahimsn.particle.ParticleView
+            android:id="@+id/particleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:particleColor="#f8b342"
+            app:particleCount="60"
+            app:particleLineColor="#03ffffff"
+            app:particleLinesEnabled="false"
+            app:particleMaxRadius="10"
+            app:particleMinRadius="3"
+            app:particlesBackgroundColor="@color/primaryLightColor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.home.HomeFragment">
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/text_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="8dp"
+                android:text="Hur är din mage idag?"
+                android:textAlignment="center"
+                android:textSize="36sp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:lottie_rawRes="@raw/sun"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/oldRegister"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="200dp"
+                android:backgroundTint="#f8b342"
+                android:text="Fortsätt registrera dag"
+                android:visibility="@{oldRegisterExists ?  View.VISIBLE:  View.GONE}" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/newRegister"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginHorizontal="50dp"
+                android:backgroundTint="#f8b342"
+                android:text="Registrera ny dag"
+                android:visibility="@{oldRegisterExists ?  View.GONE : View.VISIBLE}"
+                app:layout_marginTop="@{oldRegisterExists ? @dimen/margin_old_exists  : @dimen/margin_old_dont_exist}" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
