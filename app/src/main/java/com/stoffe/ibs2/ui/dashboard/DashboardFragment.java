@@ -1,17 +1,20 @@
 package com.stoffe.ibs2.ui.dashboard;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.tabs.TabLayout;
@@ -32,6 +35,7 @@ public class DashboardFragment extends Fragment {
 
     private DayViewModel viewModel;
     private LineChart chart;
+    private PieChart pieChart;
     private List<Day> days;
     ArrayList<ILineDataSet> dataSets;
     private DataType currentDataType;
@@ -43,8 +47,8 @@ public class DashboardFragment extends Fragment {
                 ViewModelProviders.of(requireActivity()).get(DayViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-
         chart = root.findViewById(R.id.chart);
+        pieChart = root.findViewById(R.id.foodChart);
         return root;
     }
 
@@ -53,12 +57,11 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         days = viewModel.getDays();
+
         currentDataType = DataType.ALL;
         currentDataLimit = 7;
         init(currentDataLimit, currentDataType);
-
-        Log.d("destoffe", "size: " + days.size());
-
+        initPieChart();
 
         TabLayout tabLayoutDataLimit = view.findViewById(R.id.tabLayout_data_limit);
         tabLayoutDataLimit.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -107,7 +110,6 @@ public class DashboardFragment extends Fragment {
                         break;
 
                     case 2:
-
                         currentDataType = DataType.SPOOL;
                         init(currentDataLimit, currentDataType);
                         break;
@@ -143,12 +145,10 @@ public class DashboardFragment extends Fragment {
 
 
         for (int i = 0; i < days.size(); i++) {
-            if (!days.get(i).isTempDay()) {
-                pain.add(new Entry(i, days.get(i).getPain()));
-                toilet.add(new Entry(i, days.get(i).getToiletVisits()));
-                stool.add(new Entry(i, days.get(i).getStool()));
-                exercise.add(new Entry(i, days.get(i).getExercise()));
-            }
+            pain.add(new Entry(i, days.get(i).getPain()));
+            toilet.add(new Entry(i, days.get(i).getToiletVisits()));
+            stool.add(new Entry(i, days.get(i).getStool()));
+            exercise.add(new Entry(i, days.get(i).getExercise()));
 
         }
         LineDataSet set1;
@@ -181,6 +181,7 @@ public class DashboardFragment extends Fragment {
         chart.getDescription().setEnabled(false);
         chart.setDrawBorders(false);
 
+        chart.invalidate();
         set1.setColor(colors[0 % colors.length]);
         set1.setDrawValues(false);
         set2.setDrawValues(false);
@@ -203,7 +204,6 @@ public class DashboardFragment extends Fragment {
         chart.getAxisRight().setDrawGridLines(false);
         chart.getXAxis().setDrawAxisLine(false);
         chart.getXAxis().setDrawGridLines(false);
-
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setEnabled(true);
@@ -233,12 +233,12 @@ public class DashboardFragment extends Fragment {
         l.setFormSize(14f);
         l.setTextSize(9f);
         l.setYOffset(13f);
-
+        chart.setNoDataText("Need more than 1 day of data");
         chart.setExtraBottomOffset(16f);
-        chart.setData(data);
+        if (days.size() > 1)
+            chart.setData(data);
         chart.animateX(500);
         chart.animateY(500);
-        chart.notifyDataSetChanged();
     }
 
     private final int[] colors = new int[]{
@@ -247,6 +247,24 @@ public class DashboardFragment extends Fragment {
             ColorTemplate.VORDIPLOM_COLORS[2],
             ColorTemplate.VORDIPLOM_COLORS[3]
     };
+
+    private void initPieChart() {
+        ArrayList<PieEntry> entries = new ArrayList<>();
+
+        for (int i = 0; i < days.size(); i++) {
+            if (days.get(i).getFoods() == null) {
+                continue;
+            }
+            for (int y = 0; y < days.get(i).getFoods().size(); y++) {
+                entries.add(new PieEntry(1, days.get(i).getFoods().get(y)));
+            }
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "Food");
+        PieData data = new PieData(dataSet);
+        pieChart.setData(data);
+        pieChart.invalidate();
+    }
 
 }
 

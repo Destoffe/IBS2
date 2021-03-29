@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
                 android:layout_marginEnd="8dp"
-                android:text="Hur är din mage idag?"
+                android:text="@string/how_is_stomach"
                 android:textAlignment="center"
                 android:textSize="36sp" />
 
@@ -71,9 +71,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="200dp"
                 android:backgroundTint="#f8b342"
-                android:text="Fortsätt registrera dag"
+                android:text="@string/continue_register"
                 android:visibility="@{oldRegisterExists ?  View.VISIBLE:  View.GONE}" />
 
             <com.google.android.material.button.MaterialButton
@@ -82,9 +81,9 @@
                 android:layout_height="75dp"
                 android:layout_marginHorizontal="50dp"
                 android:backgroundTint="#f8b342"
-                android:text="Registrera ny dag"
+                android:text="@string/register_new_day"
                 android:visibility="@{oldRegisterExists ?  View.GONE : View.VISIBLE}"
-                app:layout_marginTop="@{oldRegisterExists ? @dimen/margin_old_exists  : @dimen/margin_old_dont_exist}" />
+                app:layout_marginTop="@{!oldRegisterExists ? @dimen/margin_old_exists  : @dimen/margin_old_dont_exist}" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

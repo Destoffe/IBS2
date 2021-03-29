@@ -64,9 +64,16 @@ public class FoodFragment extends Fragment {
             @Override
             public void onClick(View view1) {
 
-                if (viewModel.getTempDay() != null)
-                    viewModel.removeTempDay(viewModel.getTempDay());
-                tempDay.setDate(LocalDate.now());
+                LocalDate todayDate = LocalDate.now();
+                for (Day day : viewModel.getDays()) {
+                    if (day.getDate().equals(todayDate)) {
+                        viewModel.setTempDay(day);
+                        viewModel.removeTempDay(day);
+                        break;
+                    }
+                }
+
+                tempDay.setDate(todayDate);
                 tempDay.setFoods(foods);
                 viewModel.insertDay(tempDay);
                 try {
@@ -81,26 +88,14 @@ public class FoodFragment extends Fragment {
             if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && i == KeyEvent.KEYCODE_ENTER) {
                 listAdapter.addData(binding.playerField.getText().toString());
                 hideKeyboard(view1);
-                binding.playerField.setText("");
                 foods.add(binding.playerField.getText().toString());
+                binding.playerField.setText("");
                 tempDay.setFoods(foods);
                 return true;
-
             }
             return false;
         });
 
-    }
-
-    @Override
-    public void onDestroy() {
-        if (viewModel.getTempDay() != null) {
-            viewModel.removeTempDay(viewModel.getTempDay());
-        }
-        tempDay.setTempDay(true);
-        tempDay.setDate(LocalDate.now());
-        viewModel.insertDay(tempDay);
-        super.onDestroy();
     }
 
     private void hideKeyboard(View view) {

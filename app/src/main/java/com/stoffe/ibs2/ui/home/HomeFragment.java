@@ -43,19 +43,13 @@ public class HomeFragment extends Fragment {
             LocalDate todayDate = LocalDate.now();
 
             for (Day day : data) {
-                Log.d("destoffe",": "+ day.getToiletVisits() + " " + day.getPain() + " " + day.getExercise() + " " + day.getStool());
-                if (day.isTempDay()) {
-                    viewModel.setTempDay(day);
-                    Log.d("destoffe","change day");
-                    binding.setOldRegisterExists(true);
-                }
-
-                if(day.getDate().equals(todayDate) && !day.isTempDay()){
+                Log.d("destoffe","date: " + day.getDate().toString());
+                if (day.getDate().equals(todayDate)) {
                     viewModel.setTempDay(day);
                     binding.setOldRegisterExists(true);
                     binding.oldRegister.setText(R.string.change_day);
+                    break;
                 }
-
             }
             viewModel.setDays(data);
         });

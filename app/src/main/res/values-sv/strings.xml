@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">IBS</string>
+    <string name="title_home">Hem</string>
+    <string name="title_dashboard">Statistik</string>
+    <string name="title_notifications">Kalender</string>
+    <string name="toa_titel">Antal toabesök?</string>
+    <string name="pain_titel">Hur ont har du haft?</string>
+    <string name="food_titel">Vad har du ätit idag?</string>
+    <string name="promenad_titel">Hur mycket har du tränat?</string>
+    <string name="stool_titel">Konstistent i avföring?</string>
+    <string name="change_day">Change todays register</string>
+    <string name="add_food">Lägg till mat</string>
+    <string name="example_food">Macka med ost</string>
+    <string name="register_day">Registrera day</string>
+    <string name="register_new_day">Registrera ny dag</string>
+    <string name="how_is_stomach">Hur är din mage idag?</string>
+    <string name="continue_register">"Fortsätt registrera dag</string>
+    <string name="next_question">Nästa fråga</string>
+    <string name="food">Mat</string>
+    <string name="no_data">Ingen data hittad på denna dag</string>
+
+    <string name="seven_days">7 Dagar</string>
+    <string name="thirty_days">30 Dagar</string>
+    <string name="all_days">Alla Dagar</string>
+
+    <string name="pain">Smärta</string>
+    <string name="spool">Avföring</string>
+    <string name="exercise">Träning</string>
+    <string name="toilet">Toa</string>
+    <string name="all">Alla</string>
+
+    <string name="question_one">Fråga 1/5</string>
+    <string name="question_two">Fråga 2/5</string>
+    <string name="question_three">Fråga 3/5</string>
+    <string name="question_four">Fråga 4/5</string>
+    <string name="question_five">Fråga 5/5</string>
+</resources>

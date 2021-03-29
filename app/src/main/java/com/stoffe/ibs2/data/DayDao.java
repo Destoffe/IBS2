@@ -11,7 +11,7 @@ import androidx.room.Query;
 @Dao
 public interface DayDao {
 
-    @Query("SELECT * FROM day")
+    @Query("SELECT * FROM day ORDER BY date ASC")
     LiveData<List<Day>> getAll();
 
     @Query("SELECT * FROM day WHERE uid IN (:userIds)")

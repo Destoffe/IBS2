@@ -1,19 +1,37 @@
 <resources>
-    <string name="app_name">IBS2</string>
+    <string name="app_name">IBS</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="toa_titel">Antal toabesök?</string>
-    <string name="pain_titel">Hur ont har du haft?</string>
-    <string name="food_titel">Vad har du ätit idag?</string>
-    <string name="promenad_titel">Hur mycket har du tränat?</string>
-    <string name="stool_titel">Konstistent i avföring?</string>
+    <string name="title_notifications">Calendar</string>
+    <string name="toa_titel">Toilet visits?</string>
+    <string name="pain_titel">How much pain?</string>
+    <string name="food_titel">What have you eaten?</string>
+    <string name="promenad_titel">How much have you worked out?</string>
+    <string name="stool_titel">Consistent in spool?</string>
     <string name="change_day">Change todays register</string>
+    <string name="add_food">Add dinner</string>
+    <string name="example_food">Sandwich</string>
+    <string name="register_day">Register day</string>
+    <string name="register_new_day">Register new day</string>
+    <string name="how_is_stomach">How is your stomach today?</string>
+    <string name="continue_register">Continue Register</string>
+    <string name="next_question">Next question</string>
+    <string name="food">Food</string>
+    <string name="no_data">No data found on this day</string>
 
-    <string name="question_one">Fråga 1/6</string>
-    <string name="question_two">Fråga 2/6</string>
-    <string name="question_three">Fråga 3/6</string>
-    <string name="question_four">Fråga 4/6</string>
-    <string name="question_five">Fråga 5/6</string>
-    <string name="question_six">Fråga 6/6</string>
+    <string name="seven_days">7 Days</string>
+    <string name="thirty_days">30 Days</string>
+    <string name="all_days">All Days</string>
+
+    <string name="pain">Pain</string>
+    <string name="spool">Spool</string>
+    <string name="exercise">Exercise</string>
+    <string name="toilet">Toilet</string>
+    <string name="all">All</string>
+
+    <string name="question_one">Question 1/5</string>
+    <string name="question_two">Question 2/5</string>
+    <string name="question_three">Question 3/5</string>
+    <string name="question_four">Question 4/5</string>
+    <string name="question_five">Question 5/5</string>
 </resources>

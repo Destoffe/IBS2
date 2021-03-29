@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="day"
+            type="com.stoffe.ibs2.data.Day" />
+
+        <import type="android.view.View" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.home.HomeFragment">
+
+            <TextView
+                android:id="@+id/text_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{day.date.toString()}"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/no_data"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:visibility="@{day == null ?  View.VISIBLE:  View.GONE}"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:visibility="@{day != null ?  View.VISIBLE:  View.GONE}">
+
+                <include
+                    android:id="@+id/toa"
+                    layout="@layout/small_information_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    bind:title="@{@string/toa_titel}"
+                    bind:value="@{day.toiletVisits}" />
+
+                <include
+                    android:id="@+id/pain"
+                    layout="@layout/small_information_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    bind:title="@{@string/pain_titel}"
+                    bind:value="@{day.pain}" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:visibility="@{day != null ?  View.VISIBLE:  View.GONE}">
+
+                <include
+                    android:id="@+id/stool"
+                    layout="@layout/small_information_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    bind:title="@{@string/stool_titel}"
+                    bind:value="@{day.stool}" />
+
+                <include
+                    android:id="@+id/promenad"
+                    layout="@layout/small_information_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    bind:title="@{@string/promenad_titel}"
+                    bind:value="@{day.exercise}" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/food"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:visibility="@{day.foods.size() > 0 ?  View.VISIBLE:  View.GONE}"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_view"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:listSelector="@android:color/transparent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

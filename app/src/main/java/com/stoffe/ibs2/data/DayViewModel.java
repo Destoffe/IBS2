@@ -2,6 +2,8 @@ package com.stoffe.ibs2.data;
 
 import android.app.Application;
 
+import org.threeten.bp.LocalDate;
+
 import java.util.List;
 
 import androidx.lifecycle.AndroidViewModel;
@@ -13,12 +15,14 @@ public class DayViewModel extends AndroidViewModel {
     private MutableLiveData<List<Day>> days;
     private DayRepository repository;
     private MutableLiveData<Day> tempDay;
+    private MutableLiveData<LocalDate> currentDate;
 
     public DayViewModel(Application application) {
         super(application);
         days = new MutableLiveData<>();
         tempDay = new MutableLiveData<>();
         repository = new DayRepository(application);
+        currentDate = new MutableLiveData<>();
     }
 
     public List<Day> getDays() {
@@ -51,5 +55,13 @@ public class DayViewModel extends AndroidViewModel {
 
     public Day getTempDay() {
         return tempDay.getValue();
+    }
+
+    public void setCurrentDate(LocalDate  localDate){
+        this.currentDate.postValue(localDate);
+    }
+
+    public LocalDate getCurrentDate(){
+        return currentDate.getValue();
     }
 }

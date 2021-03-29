@@ -37,7 +37,6 @@ public class StoolFragment extends Fragment {
             tempDay = viewModel.getTempDay();
             binding.pain.slider.setValue(tempDay.getStool());
             binding.pain.currentValue.setText(Integer.toString(tempDay.getStool()));
-            Log.d("destoffe", "pain: " + viewModel.getTempDay().getPain() + " " + viewModel.getTempDay().getToiletVisits() + " " + viewModel.getTempDay().getStool() + " " + viewModel.getTempDay().getExercise());
         } else {
             tempDay = new Day();
         }
@@ -67,14 +66,4 @@ public class StoolFragment extends Fragment {
 
     }
 
-    @Override
-    public void onDestroy() {
-        if (viewModel.getTempDay() != null) {
-            viewModel.removeTempDay(viewModel.getTempDay());
-        }
-        tempDay.setTempDay(true);
-        tempDay.setDate(LocalDate.now());
-        viewModel.insertDay(tempDay);
-        super.onDestroy();
-    }
 }
