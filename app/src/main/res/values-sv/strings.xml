@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IBS</string>
+    <string name="app_name">IBS - Mat kartläggare</string>
     <string name="title_home">Hem</string>
     <string name="title_dashboard">Statistik</string>
     <string name="title_notifications">Kalender</string>
